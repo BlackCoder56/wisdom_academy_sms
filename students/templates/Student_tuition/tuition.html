@@ -1,0 +1,127 @@
+{% extends 'Student_tuition/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<!-- offset-md-4 
+table-bordered border-primary
+-->
+   
+<div class=" my-5 pt-4">
+   <div class="row my-4">
+    <div class="col-md-4">
+        <h5 class="text-dark">Tuition</h5>
+        
+        <table class="table  table-bordered border-dark table-hover table-striped">
+            <thead class="table-primary border-primary">
+                <tr class="bg-primary">
+                    <th scope="col" class="text-center">Course</th>
+                    <th scope="col" class="text-center">Period   (in years)</th>
+                    <th scope="col">Tuition(UGX)</th>                  
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% if courses %}
+                {% for course in courses %}
+                    <tr>
+                        <td>
+                            {{ course.course_name }}
+                        </td>
+                        <td class="text-center">
+                            {{ course.course_period }}
+                        </td>
+                        <td>
+                            {{ course.tuition }}
+                        </td>
+                    </tr>    
+                {% endfor %}
+                {% endif %}
+            </tbody>
+                
+        </table>        
+    </div>
+
+     <!-- Popup modal -->
+     
+     <div class="modal modal-rounded  " id="myModal1" tabindex="-1">
+        
+        <div class="modal-dialog my-5 w-25">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-light ">
+              <h5 class="modal-title">
+                Enter data
+              </h5>
+              <button type="button" class="btn-close btn-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-secondary">
+              <form action="{% url 'add_fees' %}" method="post">
+                {% csrf_token %}            
+
+                <input type="text" name="code" id=""  class="form-control rounded my-2" pattern = ST[4-5][0-9][0-9] placeholder="Enter correct Student Code">
+                <input type="number" name="st_fees" id=""  class="form-control rounded my-4" pattern = ST[4-5][0-9][0-9] placeholder="Enter received cash (UGX)">
+              
+            </div>
+            <div class="modal-footer my-0 bg-secondary">
+                <button type="submit" class="btn btn-primary   block rounded ">
+                    <i class="fa-solid fa-database  "></i>
+                    Submit
+                </button>
+              <button type="button" class="btn btn-secondary rounded" data-bs-dismiss="modal">
+                Close
+              </button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <div class="col-md-7">  
+    <h5 class="text-dark"><u>Student Tuition Info</u></h5>
+    <table class="table table-primary table-bordered border-primary table-hover table-striped">
+        <thead class="table-success border-primary">
+            <tr class="bg-primary">
+                <th scope="col" class="text-center">Student Code</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Course</th>
+                <th scope="col ">Paid</th>
+                <th scope="col">Outstanding</th>
+                <th scope="col">Total</th>              
+                <th scope="col"  class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider"> 
+            {% if s_tuition %}
+            {% for tuition in s_tuition %}
+                <tr>
+                    <td>
+                        {{ tuition.student_code.student_code }}
+                    </td>
+                    <td>
+                        {{ tuition.student_code.student_name }}
+                    </td>
+                    <td>
+                        {{ tuition.student_code.course }}
+                    </td>
+                    <td>
+                        {{ tuition.paid }}
+                    </td>
+                    <td>
+                      
+                    </td>
+                    
+                    <td>                       
+                        
+                    </td>
+                   
+                </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+            
+    </table>
+
+    </div>
+   </div>
+</div>
+
+    
+</div>
+{% endblock content %}

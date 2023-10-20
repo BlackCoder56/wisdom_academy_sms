@@ -1,0 +1,200 @@
+{% extends 'wisdom_academy/base.html' %}
+{% block content %}
+<!-- offset-md-4 
+table-bordered border-primary
+-->
+    {% if user.is_authenticated %}
+    <div class="col-md-6  my-5 pt-4"></div>
+    <h3 class="mx-2">Student Records</h3>
+    
+    <table class="table table-primary table-bordered border-primary table-hover table-striped">
+        <thead class="table-success border-primary">
+            <tr class="bg-primary">
+                <th scope="col" class="text-center">Student Code</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Course</th>
+                <th scope="col"  class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% if students %}
+                {% for student in students %}
+                <tr>
+                    <td class="text-center">
+                        <a href="{% url 'view_student' student.id %}" 
+                        data-bs-toggle="modal" data-bs-target="#myModal{{ student.id }}"
+                        >{{ student.student_code }}</a>
+                    </td>
+                    <td class="w-25 ">
+                        <strong>
+                            {{ student.student_name }}
+                        </strong>                        
+                    </td>             
+                    <td >
+                        {{ student.email }}
+                    </td>      
+                    <td class="w-10">
+                        +256 {{ student.phone}}
+                    </td> 
+                    <td class="w-10" >
+                        {{ student.address }}
+                    </td>
+                    <td >
+                        <strong class="text-primary align-text-middle">
+                            {{ student.course }}
+                        </strong>                        
+                    </td>
+                    <td class="text-center">
+                        <button class="btn d-inline" href="{% url 'view_student' student.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{ student.id }}"  >
+                            <i class="fa-solid fa-info" style="color: #2b06b1;"></i>
+                        </button>
+
+
+                        <!------------  Modals         -->
+            <div class="modal modal-rounded " id="myModal{{ student.id }}" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header bg-primary text-light ">
+                      <h5 class="modal-title">
+                        Student Details
+                      </h5>
+                      <button type="button" class="btn-close btn-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    
+                        <table class="table table-primary table-bordered border 
+                        border-primary border-2 table-hover my-2">
+
+                            <tbody>
+                              <tr>
+                                <td  class="text-sm-start">
+                                    Student Code
+                                </td>
+                                <td  class="text-sm-start">
+                                    <strong>
+                                        {{ student.student_code }}
+                                    </strong>
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Student Name
+                                </td>
+                                <td class="text-sm-start">
+                                    <strong>
+                                        {{ student.student_name }}
+                                    </strong>                                    
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Email
+                                </td>
+                                <td class="text-sm-start">
+                                    <strong>
+                                        {{ student.email }}
+                                    </strong>                                    
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Phone
+                                </td>
+                                <td class="text-sm-start">
+                                    <strong>
+                                        +256 {{ student.phone}}
+                                    </strong>
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Address
+                                </td>
+                                <td class="text-sm-start">
+                                    <strong>
+                                        {{ student.address }}
+                                    </strong>
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Course
+                                </td>
+                                <td class="text-sm-start text-primary">
+                                    <strong>
+                                        {{ student.course }}
+                                    </strong>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                    </div>
+                    <div class="modal-footer my-0">
+                         
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-----------   endModals      -->
+
+
+                        <a href="{% url 'update' student.id %}" class="btn mx-0">
+                            <i class="fa-regular fa-pen-to-square " style="color: #05851e;"></i>
+                        </a>              
+                        <form action="{% url 'delete' student.id %}" method="post" class="d-inline mx-0">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="fa-regular fa-trash-can " style="color: #f70202;"></i>
+                            </button>
+                        </form>                               
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+
+            
+
+        </tbody>
+    </table>
+
+
+    {% else %}
+    <div class="col-md-4 offset-md-4  my-5 pt-3">
+
+    <h2 class="text-primary mt-5 offset-md-3">
+        <span>
+            Login
+        </span>
+    </h2>
+    <br>
+    <form method="post" class="col-md-7 offset-md-3" action="{% url 'home' %}" autocomplete="off">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label mx-2 ">
+                Username
+            </label>
+            <input type="text" class="form-control rounded" name="username" required placeholder="Enter username" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+         <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label mx-2">
+                Password
+            </label>
+            <input type="password" class="form-control rounded" name="password" required placeholder="Enter password" id="exampleInputPassword1">
+          </div>
+        <button type="submit" class="btn btn-primary rounded px-4">
+            <strong>
+                Submit
+            </strong>
+            </button>
+    </form>
+    {% endif %}
+    
+</div>
+{% endblock content %}
