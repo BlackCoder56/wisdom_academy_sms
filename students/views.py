@@ -4,12 +4,32 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from . models import Student, Result, Course, Student_fees
-from . forms import StudentForm, ResultForm
+from . forms import StudentForm, ResultForm, SignUpForm
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
+# sign view function
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Authentication and login
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, "You Have Successfully Registered! Welcome.")
+            return redirect('home')
+    else:
+        form = SignUpForm()
+        return render(request, 'wisdom_academy/signup.html', {'form': form})
+
+    return render(request, 'wisdom_academy/signup.html', {'form': form})
+
+# home and login view function
 def home(request):
     students = Student.objects.all()
     if request.user.is_authenticated:    

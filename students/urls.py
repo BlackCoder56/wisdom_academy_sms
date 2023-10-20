@@ -8,6 +8,8 @@ urlpatterns = [
     path('signout', views.signout, name='signout'),
     # url home view
     path('home', views.home, name='home'),
+    # url for signup user
+    path('signup', views.signup, name='signup'),
     # url for creating student
     path('student_registration', views.student_registration_form, name='student_registration'),
     # url to search for student

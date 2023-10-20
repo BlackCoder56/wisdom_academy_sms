@@ -166,15 +166,15 @@ table-bordered border-primary
 
 
     {% else %}
-    <div class="col-md-4 offset-md-4  my-5 pt-3">
+    <div class="col-md-6 offset-md-3  my-5 pt-3">
 
-    <h2 class="text-primary mt-5 offset-md-3">
+    <h5 class=" mt-5 offset-md-2">
         <span>
             Login
         </span>
-    </h2>
-    <br>
-    <form method="post" class="col-md-7 offset-md-3" action="{% url 'home' %}" autocomplete="off">
+    </h5>
+    <hr>
+    <form method="post" class="col-md-7 offset-md-2" action="{% url 'home' %}" autocomplete="off">
         {% csrf_token %}
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label mx-2 ">
@@ -190,7 +190,7 @@ table-bordered border-primary
           </div>
         <button type="submit" class="btn btn-primary rounded px-4">
             <strong>
-                Submit
+                Login
             </strong>
             </button>
     </form>
