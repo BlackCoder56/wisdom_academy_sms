@@ -26,7 +26,11 @@
           </li>
        
         </ul>      
-       
+        <form class="d-flex" role="search">
+            {% csrf_token %}
+            <input class="form-control me-2 rounded" type="search" placeholder="Search Student" aria-label="Search">
+            <button class="btn btn-outline-warning me-3 rounded" type="submit">Search</button>
+          </form>
         <ul class="nav navbar-nav navbar-right">            
             <li >
                 <a href="{% url 'signout' %}" class="btn btn-secondary rounded mx-2 px-4" role="button" >
