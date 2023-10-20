@@ -19,7 +19,9 @@ urlpatterns = [
     # url for view student in model
     path('view/<int:id>', views.view_student, name='view_student'),
     # url for viewing course and student tuition
-    path('view_tuition', views.tuition_view, name='view_tuition'),
+    path('view_tuition', views.tuition_view, name='view_tuition'),    
+    # url to search for student
+    path('search_tuition', views.search_tuition, name='search_tuition'),
     # url for add student tuition payment record
     path('add_fees', views.add_fees, name='add_fees'),
     # url for displaying results

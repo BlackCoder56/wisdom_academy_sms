@@ -146,6 +146,14 @@ def tuition_view(request):
     else:
         return redirect('home')    
     
+# view to search for tuition
+def search_tuition(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        s_tuition = Student_fees.objects.filter(student_name__contains=searched)
+        return render(request, 'wisdom_academy/search_result.html', {'s_tuition': s_tuition})
+    else:
+        return redirect('Student_results')
 # view for adding student tuition record
 def add_fees(request):
     # st_code = form.cleaned_data['code']
