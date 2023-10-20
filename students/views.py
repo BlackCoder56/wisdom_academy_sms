@@ -87,7 +87,16 @@ def result_home(request):
     if request.user.is_authenticated:
         return render(request, 'Student_results/results.html', {'results':results})
     else:
-        return redirect('home')        
+        return redirect('home')       
+    
+# view to search for result
+def search_result(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        results = Student.objects.filter(student_name__contains=searched)
+        return render(request, 'wisdom_academy/search_result.html', {'results': results})
+    else:
+        return redirect('Student_results')
 
 # view to add result
 def add_result(request, id=0):

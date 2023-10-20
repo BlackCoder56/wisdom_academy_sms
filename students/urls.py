@@ -24,6 +24,8 @@ urlpatterns = [
     path('add_fees', views.add_fees, name='add_fees'),
     # url for displaying results
     path('Student_results', views.result_home, name='Student_results'),
+    # url to search for student
+    path('search_result', views.search_result, name='search_result'),
     # url for add results
     path('add_results', views.add_result, name='add_results'),
     # url for updating result

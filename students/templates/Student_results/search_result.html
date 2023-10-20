@@ -1,0 +1,180 @@
+{% extends 'Student_results/base.html' %}
+{% block content %}
+<!-- offset-md-4 
+table-bordered border-primary
+-->
+   
+<div class=" my-5 pt-4">
+    <h3  class="my-3 mx-3">Students' Result</h3>
+    <table class="table table-primary table-bordered border-primary table-hover table-striped">
+        <thead class="table-success border-primary">
+            <tr class="bg-primary">
+                <th scope="col" class="text-center">Student Code</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Module (1)</th>
+                <th scope="col">Module (2)</th>
+                <th scope="col">Module (3)</th>
+                <th scope="col">Module (4)</th>
+                <th scope="col">GPA</th>
+                <th scope="col"  class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% if results %}
+                {% for result in results %}
+                <tr>
+                    <td class="text-center">
+                        <a href="">
+                             {{ result.student_code }}</a>
+                    </td>
+                    <td class="w-25 ">
+                        <strong>
+                            {{ result.student_name }}
+                        </strong>                        
+                    </td>             
+                    <td >
+                        {{ result.m_one }}
+                    </td>      
+                    <td class="w-10">
+                        {{ result.m_two }}
+                    </td> 
+                    <td class="w-10" >
+                        {{ result.m_three }}
+                    </td>
+                    <!-- <td >
+                        <strong class="text-primary align-text-middle">
+                            {{ result.m_three }}
+                    </strong>                      </td> -->
+                    <td class="w-10" >
+                        {{ result.m_four }}
+                    </td>
+                    <td class="w-10" >
+                        {{ result.gpa }}
+                    </td>
+                    <td class="text-center">
+                       
+
+                        <button class="btn d-inline" href="{% url 'view_result' result.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{ result.id }}"  >
+                            <i class="fa-solid fa-info" style="color: #2b06b1;"></i>
+                        </button>
+
+
+                        <!------------  Modals         -->
+            <div class="modal modal-rounded " id="myModal{{ result.id }}" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header bg-primary text-light ">
+                      <h5 class="modal-title">
+                        Student Details
+                      </h5>
+                      <button type="button" class="btn-close btn-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    
+                        <table class="table table-primary table-bordered border 
+                        border-primary border-2 table-hover my-2">
+
+                            <tbody>
+                              <tr>
+                                <td  class="text-sm-start">
+                                    Student Code
+                                </td>
+                                <td  class="text-sm-start">
+                                    <strong>
+                                        {{ result.student_code }}
+                                    </strong>
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Student Name
+                                </td>
+                                <td class="text-sm-start">
+                                    <strong>
+                                        {{ result.student_name }}
+                                    </strong>                                    
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                   Module (1)
+                                </td>
+                                <td class="text-sm-start text-primary">
+                                    <strong>
+                                        {{ result.m_one }}
+                                    </strong>                                    
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Module (2)
+                                </td>
+                                <td class="text-sm-start text-primary">
+                                    <strong>
+                                        {{ result.m_two }}
+                                    </strong>
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Module (3)
+                                </td>
+                                <td class="text-sm-start text-primary">
+                                    <strong>
+                                        {{ result.m_three }}
+                                    </strong>
+                                </td>
+                              </tr>
+                            <tr>
+                                <td class="text-sm-start">
+                                    Module (4)
+                                </td>
+                                <td class="text-sm-start text-primary">
+                                    <strong>
+                                        {{ result.m_four }}
+                                    </strong>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="text-sm-start">
+                                    GPA
+                                </td>
+                                <td class="text-sm-start text-primary">
+                                    <strong>
+                                        {{ result.gpa }}
+                                    </strong>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                    </div>
+                    <div class="modal-footer my-0">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-----------   endModals      -->
+
+
+                        <a href="{% url 'update_result' result.id %}" class="btn mx-0">
+                            <i class="fa-regular fa-pen-to-square " style="color: #05851e;"></i>
+                        </a>              
+                        <form action="{% url 'delete_result' result.id %}" method="post" class="d-inline mx-0">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">
+                                <i class="fa-regular fa-trash-can " style="color: #f70202;"></i>
+                            </button>
+                        </form>                               
+
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+
+        </tbody>            
+    </table>    
+</div>
+{% endblock content %}
