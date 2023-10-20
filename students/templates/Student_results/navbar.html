@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav px-4 me-auto">
           <li class="nav-item">
-            <a class="nav-link active mx-4" href="{% url 'home' %}">
+            <a class="nav-link active mx-4" href="{% url 'Student_results' %}">
                 <i class="fa-solid fa-house "></i>
                 Home
               <span class="visually-hidden">(current)</span>
@@ -26,9 +26,9 @@
           </li>
        
         </ul>      
-        <form class="d-flex" role="search">
+        <form class="d-flex" action="{% url 'search_result' %}" role="search" method="post">
             {% csrf_token %}
-            <input class="form-control me-2 rounded" type="search" placeholder="Search Student" aria-label="Search">
+            <input class="form-control me-2 rounded" type="search" placeholder="Search Student" name="searched" required aria-label="Search">
             <button class="btn btn-outline-warning me-3 rounded" type="submit">Search</button>
           </form>
         <ul class="nav navbar-nav navbar-right">            

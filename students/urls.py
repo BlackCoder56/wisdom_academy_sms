@@ -8,6 +8,8 @@ urlpatterns = [
     path('signout', views.signout, name='signout'),
     # url home view
     path('home', views.home, name='home'),
+    # url for signup user
+    path('signup', views.signup, name='signup'),
     # url for creating student
     path('student_registration', views.student_registration_form, name='student_registration'),
     # url to search for student
@@ -19,11 +21,15 @@ urlpatterns = [
     # url for view student in model
     path('view/<int:id>', views.view_student, name='view_student'),
     # url for viewing course and student tuition
-    path('view_tuition', views.tuition_view, name='view_tuition'),
+    path('view_tuition', views.tuition_view, name='view_tuition'),    
+    # url to search for student
+    path('search_tuition', views.search_tuition, name='search_tuition'),
     # url for add student tuition payment record
     path('add_fees', views.add_fees, name='add_fees'),
     # url for displaying results
     path('Student_results', views.result_home, name='Student_results'),
+    # url to search for student
+    path('search_result', views.search_result, name='search_result'),
     # url for add results
     path('add_results', views.add_result, name='add_results'),
     # url for updating result

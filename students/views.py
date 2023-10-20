@@ -4,12 +4,32 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from . models import Student, Result, Course, Student_fees
-from . forms import StudentForm, ResultForm
+from . forms import StudentForm, ResultForm, SignUpForm
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
+# sign view function
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Authentication and login
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(request, "You Have Successfully Registered! Welcome.")
+            return redirect('home')
+    else:
+        form = SignUpForm()
+        return render(request, 'wisdom_academy/signup.html', {'form': form})
+
+    return render(request, 'wisdom_academy/signup.html', {'form': form})
+
+# home and login view function
 def home(request):
     students = Student.objects.all()
     if request.user.is_authenticated:    
@@ -87,7 +107,16 @@ def result_home(request):
     if request.user.is_authenticated:
         return render(request, 'Student_results/results.html', {'results':results})
     else:
-        return redirect('home')        
+        return redirect('home')       
+    
+# view to search for result
+def search_result(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        results = Student.objects.filter(student_name__contains=searched)
+        return render(request, 'wisdom_academy/search_result.html', {'results': results})
+    else:
+        return redirect('Student_results')
 
 # view to add result
 def add_result(request, id=0):
@@ -137,6 +166,14 @@ def tuition_view(request):
     else:
         return redirect('home')    
     
+# view to search for tuition
+def search_tuition(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        s_tuition = Student_fees.objects.filter(student_name__contains=searched)
+        return render(request, 'wisdom_academy/search_result.html', {'s_tuition': s_tuition})
+    else:
+        return redirect('Student_results')
 # view for adding student tuition record
 def add_fees(request):
     # st_code = form.cleaned_data['code']

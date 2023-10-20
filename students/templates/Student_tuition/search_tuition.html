@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisdom Academy</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+   
+</head>
+<body  class="d-flex  flex-column min-vh-100 bg-primary bg-opacity-10" >
+    <!---------------------- NAVBAR ------------------>
+    {% include 'Student_tuition/navbar.html' %}   
+    <!---------------------- ENDNAVBAR---------------->
+    <div class="container-fluid">          
+        {% block content %}  
+        {% endblock content %}
+    </div>    
+    <footer class="mt-auto mb-4">
+        <hr >
+        <div class="text-center text-secondary">
+        <span>
+            <i class="fa-solid fa-graduation-cap fa-lg"></i>
+            Wisdom Academy  School Management System.    
+              Copyright &copy; <script>document.write(new Date().getFullYear())</script> Black Coder
+             <br>
+          
+        </span>
+        </div>
+      </footer>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>       
+</body>
+</html>
