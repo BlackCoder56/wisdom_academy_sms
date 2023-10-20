@@ -72,6 +72,14 @@ def remove_student(request, id):
 def view_student(request, id):
     student = Student.objects.get(pk=id)
     return HttpResponseRedirect(reverse('home'))
+# view to search for student
+def search_student(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        students = Student.objects.filter(student_name__contains=searched)
+        return render(request, 'wisdom_academy/search_student.html', {'students': students})
+    else:
+        return redirect('home')
 
 # view for result home page
 def result_home(request):

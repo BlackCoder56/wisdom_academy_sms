@@ -10,6 +10,8 @@ urlpatterns = [
     path('home', views.home, name='home'),
     # url for creating student
     path('student_registration', views.student_registration_form, name='student_registration'),
+    # url to search for student
+    path('search_student', views.search_student, name='search_student'),
     # url for updating student data
     path('<int:id>', views.student_registration_form, name='update'),
     # url for deleting student data
