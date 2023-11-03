@@ -46,7 +46,7 @@ class StudentForm(forms.ModelForm):
     
     email = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"class": "form-control rounded"}))
     
-    phone = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"class": "form-control rounded"}))
+    phone = forms.CharField(required=True, max_length=10, min_length=10, widget=forms.widgets.TextInput(attrs={"class": "form-control rounded"}))
     
     address = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"class": "form-control rounded"}))
     
