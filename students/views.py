@@ -61,12 +61,12 @@ def student_registration_form(request, id=0):
         
     if request.user.is_authenticated:        
         if request.method == "GET":
-                if id == 0:
-                    form = StudentForm()
-                else:
-                    student = Student.objects.get(pk=id)
-                    form = StudentForm(instance=student)
-                return render(request, 'wisdom_academy/student_registration.html',{'form':form})
+            if id == 0:
+                form = StudentForm()
+            else:
+                student = Student.objects.get(pk=id)
+                form = StudentForm(instance=student)
+            return render(request, 'wisdom_academy/student_registration.html',{'form':form})
         else:                
         
             if id == 0:

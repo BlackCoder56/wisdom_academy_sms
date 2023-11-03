@@ -27,7 +27,7 @@ class SignUpForm(UserCreationForm):
         self.fields['password1'].widget.attrs['class'] = 'form-control rounded'
         self.fields['password1'].widget.attrs['placeholder'] = 'Password'
         self.fields['password1'].label = ''
-        self.fields['password1'].help_text = '<ul class="form-text-muted small"><li>Your password can\'t be too your ' \
+        self.fields['password1'].help_text = '<ul class="form-text-muted small"><li>Your password can\'t be similar to your ' \
                                              'other personal information.' \
                                              '</li><li>Your password must contain at least 8 ' \
                                              'characters.</li><li>Your password can\'t be a commonly used ' \
@@ -46,7 +46,7 @@ class StudentForm(forms.ModelForm):
     
     email = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"class": "form-control rounded"}))
     
-    phone = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"class": "form-control rounded"}))
+    phone = forms.CharField(required=True, max_length=10, min_length=10, widget=forms.widgets.TextInput(attrs={"class": "form-control rounded"}))
     
     address = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"class": "form-control rounded"}))
     
