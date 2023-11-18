@@ -10,9 +10,9 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
    
 </head>
-<body  class="d-flex  flex-column min-vh-100 " style="--bs-bg-opacity: .5;" background="{% static 'img/bg.jpg'%}" >
+<body  class="d-flex  flex-column min-vh-100 " style="--bs-bg-opacity: .5;"  >
     <!---------------------- NAVBAR ------------------>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top " data-bs-theme="dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'index' %}">
             <i class="fa-solid fa-graduation-cap fa-lg"></i>
@@ -24,9 +24,9 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
-              <ul class="navbar-nav me-auto px-4">
+              <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <a class="nav-link active mx-4" href="{% url 'home' %}">
+                  <a class="nav-link  mx-4" href="{% url 'home' %}">
                     <i class="fa-solid fa-house"></i>
                     Home
                     <span class="visually-hidden">(current)</span>
@@ -36,7 +36,7 @@
                   <a class="nav-link" href="#">Features</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " href="{% url 'about_us' %}">About</a>
+                  <a class="nav-link active" href="{% url 'about_us' %}">About</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'contact' %}">Contact</a>
@@ -58,7 +58,7 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <a class="nav-link active mx-4" href="{% url 'index' %}">
+                  <a class="nav-link  mx-4" href="{% url 'index' %}">
                     <i class="fa-solid fa-house"></i>
                     Home
                     <span class="visually-hidden">(current)</span>
@@ -68,10 +68,10 @@
                   <a class="nav-link" href="#">Features</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'about_us' %}" >About</a>
+                  <a class="nav-link active" href="{% url 'about_us' %}">About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'contact' %}" >Contact</a>
+                  <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                 </li>              
               </ul>     
             <ul class="nav navbar-nav navbar-right">
@@ -90,17 +90,65 @@
         </div>
       </nav>
     <!---------------------- ENDNAVBAR---------------->
-    {% if messages %}
+    <!-- {% if messages %}
     {% for message in messages %}
       <div class="alert alert-primary alert-dismissible fade show" role="alert">
        {{ message }}
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     {% endfor %}
-    {% endif %} 
-    <div class="container-fluid ">        
+    {% endif %}  -->
+    <div class="container-fluid ">      
+        
+
+        <section id="about-section" class="my-5  pt-5 pb-5">
+            <div class="container wrapabout pt-5 offset-md-1 ">
+                <div class="red"></div>
+                <div class="row">
+                    <div class="col-lg-6 align-items-center justify-content-left d-flex mb-5 mb-lg-0">
+                        <div class="blockabout mx-4">
+                            <div class="blockabout-inner text-center text-sm-start">
+                                <div class="title-big pb-3 mb-3">
+                                    <h3>ABOUT US</h3>
+                                </div>
+                                <p class="description-p text-muted pe-0 pe-lg-0">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quas optio reiciendis deleniti voluptatem facere sequi, quia, est sed dicta aliquid quidem facilis culpa iure perferendis? Dolor ad quia deserunt.
+                                </p>
+                                <p class="description-p text-muted pe-0 pe-lg-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quas optio reiciendis deleniti voluptatem facere.</p>
+                                <div class="sited-horizontal pt-3 pb-3 px-3 ">
+                                    <a href="#" class="btn  ">
+                                        <i class="fa-brands fa-whatsapp fa-lg" style="color:#5cb85c;"></i>
+                                    </a>
+                                    <a href="#" class="btn  ">
+                                        <i class="fa-brands fa-x-twitter " style="color:#292b2c;" ></i>
+                                    </a>                                       
+                                    
+                                    <a href="#" class="btn  ">
+                                        <i class="fa-brands fa-facebook fa-lg" style="color:#0275d8;"></i>
+                                    </a>
+                                    <a href="#" class="btn  ">
+                                        <i class="fa-brands fa-linkedin  fa-lg" style="color:#0275d8;"></i>
+                                    </a>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary rounded mt-3">See More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5 mt-lg-0">
+                        <figure class="potoaboutwrap">
+                            <img src="{% static 'img/about.jpg' %}" alt="teacher" />
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+
+        
     </div>
     <footer class="mt-auto mb-4">
+      <hr>
       <div class="text-center text-secondary">
       <span>
         <i class="fa-solid fa-graduation-cap fa-lg"></i>

@@ -204,4 +204,9 @@ def add_fees(request):
     else:
        return render(request, 'Student_tuition/tuition.html')
     
-    
+
+def about_view(request):
+    return render(request, 'about_us.html')
+
+def contact_us(request):
+    return render(request, 'contact.html')
