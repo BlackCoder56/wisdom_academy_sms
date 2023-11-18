@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisdom Academy</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+   
+</head>
+<body  class="d-flex  flex-column min-vh-100 " style="--bs-bg-opacity: .5;"  >
+    <!---------------------- NAVBAR ------------------>
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <i class="fa-solid fa-graduation-cap fa-lg"></i>
+            Wisdom Academy
+          </a>
+         
+            {% if user.is_authenticated %} 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link  mx-4" href="{% url 'home' %}">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                    <span class="visually-hidden">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'about_us' %}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
+                </li>              
+              </ul>     
+             <ul class="nav navbar-nav navbar-right">            
+                <li >
+                    <a href="{% url 'signout' %}" class="btn btn-secondary rounded mx-2 px-4" role="button" >
+                        <strong>
+                            Logout
+                        </strong>
+                    </a>                    
+                </li>
+            </ul>
+            {% else %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link  mx-4" href="{% url 'index' %}">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                    <span class="visually-hidden">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'about_us' %}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'contact' %}">Contact</a>
+                </li>              
+              </ul>     
+            <ul class="nav navbar-nav navbar-right">
+              <li><p class="navbar-text">Already have an account?</p></li>
+              <li >
+                  <a href="{% url 'home' %}" class="btn btn-secondary px-4 rounded mx-4" role="button" >
+                      <strong>
+                          Login
+                      </strong>
+                  </a>                    
+              </li>
+          </ul>
+            {%endif%}
+           
+          </div>
+        </div>
+      </nav>
+   
+    <div class="container-fluid ">      
+        
+<!--Section: Contact v.2-->
+<section class="my-5 pt-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 ">
+            <!--Section heading-->
+            <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+            <!--Section description-->
+            <p class="text-center text-secondary w-responsive mx-auto">                
+                <i>
+                Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+                a matter of hours to help you.
+                </i>
+                
+            </p>
+            <p class="text-center text-secondary w-responsive mx-5 mb-5">
+                <i class="fa-solid fa-location-dot fa-lg" style="color: #3d1764;"></i>              
+                Kampala, Uganda.
+                <i class="fa-solid fa-phone fa-lg" style="color: #3d1764;"></i> + 256 770779823
+                <i class="fa-solid fa-envelope fa-lg" style="color: #3d1764;"></i>
+                    wisdomacademy@info.com
+            </p>
+        </div>
+    
+    </div>
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-md-0 mb-5 offset-md-4">
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <label for="name" class="">Your name</label>
+                            <input type="text" id="name" name="name" class="form-control rounded">                           
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <label for="email" class="">Your email</label>
+                            <input type="text" id="email" name="email" class="form-control rounded">                            
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <label for="subject" class="">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control rounded">                           
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <label for="message">Your message</label>
+                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea rounded"></textarea>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+
+            </form>
+
+            <div class="text-center text-md-left my-4">
+                <!-- <a class="btn btn-primary rounded px-4" onclick="document.getElementById('contact-form').submit();">Send</a> -->
+                <a class="btn btn-primary rounded px-4" >Send</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+       
+        <!--Grid column-->
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
+
+        
+    </div>
+    <footer class="mt-auto mb-4">
+        <hr>
+      <div class="text-center text-secondary">
+      <span>
+        <i class="fa-solid fa-graduation-cap fa-lg"></i>
+        Wisdom Academy  School Management System.    
+          Copyright &copy; <script>document.write(new Date().getFullYear())</script> Black Coder
+         <br>   
+      </span>
+      </div>
+    </footer>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>       
+</body>
+</html>

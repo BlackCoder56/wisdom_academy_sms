@@ -4,6 +4,10 @@ from . import views
 urlpatterns = [
     # url for index page
     path('', views.index, name='index'),
+    # url for about-us page
+    path('about_us', views.about_view, name='about_us'),
+    # url for contact page
+    path('contact_us', views.contact_us, name='contact' ),
     # url for log out
     path('signout', views.signout, name='signout'),
     # url home view
